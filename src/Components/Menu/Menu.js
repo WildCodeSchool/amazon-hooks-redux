@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 function Menu() {
   return (
     <div className="row">
@@ -12,10 +14,10 @@ function Menu() {
           </div>
           <div className="navbar-nav ml-auto">
             <div className="nav-item">
-              <a className="nav-link" href="/register">register</a>
+              <Link className="nav-link" href="/register">Register</Link>
             </div>
             <div className="nav-item">
-              <a className="nav-link"  href="/login">login</a>
+              <Link className="nav-link"  href="/login">Login</Link>
             </div>
           </div>
         </div>
