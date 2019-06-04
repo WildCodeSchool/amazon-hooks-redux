@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import Menu from './Components/Menu/Menu';
 import Login from './Components/Login/Login';

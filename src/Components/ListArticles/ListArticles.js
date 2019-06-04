@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import Cart from '../Cart/Cart';
+import { addArticle } from '../../Actions/cartActions';
 
+import './ListArticles.css';
 
-function ListArticles() {
+function ListArticles(props) {
 
   const [articles, setArticles] = useState([]);
   const [filterPrice, setFilterPrice] = useState('none');
@@ -56,15 +59,14 @@ function ListArticles() {
                 </tr>
               </thead>
               <tbody>
-
                 {articles.map((article, index) => {
                   return (
-                    <tr key={index}>
-                      <th scope="row" width="50%">{article.name}</th>
+                    <tr className="py-2 tr-height" key={index}>
+                      <th className="px-2" scope="row" width="50%">{article.name}</th>
                       <td width="20%">{article.price} $</td>
                       <td width="10%">{article.quantity}</td>
                       <td width="20%">
-                       <button className="btn btn-primary btn-sm float-right">Add to cart</button>
+                        <button onClick={() => props.dispatch(addArticle(article))} className="btn btn-primary btn-sm float-right mr-2">Add to cart</button>
                       </td>
                     </tr>
                   )
@@ -89,4 +91,4 @@ function ListArticles() {
   )
 } 
 
-export default ListArticles;
+export default connect()(ListArticles);
