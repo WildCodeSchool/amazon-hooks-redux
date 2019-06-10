@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+React(hook) / Redux / SQL
 
-In the project directory, you can run:
+Mini amazon is little project made in livecoding for *Wild Code School* 
 
-### `npm start`
+Install database :
+```
+CREATE DATABASE amazon
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+USE amazon
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+CREATE TABLE articles (
+ id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ name VARCHAR(255),
+ date DATE,
+ price FLOAT,
+ quantity INT
+)
 
-### `npm test`
+INSERT INTO articles (name, date, price, quantity)
+VALUES
+('Fitbit - Versa', NOW(), '159.90', '12'),
+('Asus TUF705GE-EV130T PC Portable Gamer', NOW(), '999.90', '4'),
+('Logitech G910 Clavier de jeu Mécanique', NOW(), '109.90', '38'),
+('Amazon Echo', NOW(), '59.90', '895'),
+('OnePlus 6 Smartphone débloqué 4G', NOW(), '459.90', '30'),
+('VicTsing Diffuseur Huiles Essentielles 300ml Humidificateur d\'air ', NOW(), '18.16', '103'),
+('Bâtons de réglisse Bio 100g - 12 bâtons minimum', NOW(), '9.99', '4059'),
+('Fossil Montre Homme FS4662', NOW(), '67.90', '100'),
+('Gelée Royale BIO', NOW(), '28.90', '100'),
+('Charbon végétal activé', NOW(), '4.90', '100'),
+('Baume démêlant brillance au Monoï', NOW(), '8.90', '100'),
+('Hydrolat Calendula BIO', NOW(), '4.90', '100'),
+('Eau aromatique citronnée BIO', NOW(), '5.90', '100'),
+('Ultimate Ears MEGABLAST Enceinte portable Wi-Fi/Bluetooth', NOW(), '129.90', '100'),
+('Reolink Panneau Solaire d\'alimentation', NOW(), '14.99', '100'),
+('Apple MD463ZM/A Adaptateur Thunderbolt vers Ethernet', NOW(), '33.22', '100'),
+('Abeil Couette Bio Attitude chaude Coton Blanc 240 x 260', NOW(), '44.90', '100'),
+('SanDisk Carte Mémoire microSDHC SanDisk Ultra 32GB', NOW(), '9.45', '100'),
+('Crucial SSD interne MX500 (250Go, 3D NAND, SATA, 2,5 pouces)', NOW(), '42.90', '100'),
+('Logitech M330 Souris sans Fil Silencieuse USB', NOW(), '14.90', '100'),
+('Webcam Logitech C920 HD Pro', NOW(), '54.90', '100');
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm install && npm start
+```
 
-### `npm run build`
+In another terminal prompt 
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+node api/index.js
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Commits
+ # first livecoding
+   - set views
+   - create api and get routes for articles / filter (ASC/DESC)
+   - using useEffect, Hook
+   - fetching api with axios
+   - react router
+ # correction partie 2
+   - redux, action, reducer, mapstatetoprops, dispatch
+   - utils function countTotalPrice
+   
+ # correction partie 3
+   - remove filter on api
+   - filter on front with underscore.js
+   - using middleware on redux for save cart in localstorage
+   - utils storageCart function
+   
