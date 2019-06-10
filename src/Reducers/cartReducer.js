@@ -1,7 +1,7 @@
-// REDUCER
+import { getCart } from '../Utils/storageCart';
 
-const cartReducer = (state = [], action) => {
-  console.log(state)
+// REDUCER
+const cartReducer = (state = getCart(), action) => {
   switch(action.type) {
     case 'REMOVE_ARTICLE':
       return [
