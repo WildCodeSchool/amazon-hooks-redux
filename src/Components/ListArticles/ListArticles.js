@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 import { connect } from 'react-redux';
 
 import Cart from '../Cart/Cart';
@@ -10,29 +11,8 @@ import './ListArticles.css';
 function ListArticles(props) {
 
   const [articles, setArticles] = useState([]);
-  const [filterPrice, setFilterPrice] = useState('none');
-  // 0 - no filter
-  // 1 - asc
-  // 2 - desc
-
-  const toggleFilterPrice = () => {
-    if(filterPrice === 'none') {
-      setFilterPrice('asc');
-    } else if (filterPrice === 'asc') {
-      setFilterPrice('desc');
-    } else {
-      setFilterPrice('asc');
-    }
-  }
-
-  useEffect(() => {
-    if(filterPrice !== 'none') {
-      axios.get(`http://localhost:8000/articles/filter?price=${filterPrice}`)
-      .then((result) => {
-        setArticles(result.data);
-      })
-    }
-  }, [filterPrice])
+  const [nameFilter, setNameFilter] = useState(false);
+  const [priceFilter, setPriceFilter] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:8000/articles')
@@ -41,6 +21,15 @@ function ListArticles(props) {
     })
   }, [])
 
+  const filterArticle = (tag, [setFunc, param]) => {
+    if(param) {
+      setArticles(articles.reverse());
+    } else {
+      setArticles(_.sortBy(articles, tag));
+    }
+    setFunc(!param);
+  }
+  
   return (
     <div className="row mt-5">
       <div className="col-md-8">
@@ -52,8 +41,8 @@ function ListArticles(props) {
             <table className="table-striped">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th onClick={toggleFilterPrice}>Price</th>
+                  <th className="filter-button" onClick={() => filterArticle('name', [setNameFilter, nameFilter])}>Name</th>
+                  <th className="filter-button" onClick={() => filterArticle('price', [setPriceFilter, priceFilter])}>Price</th>
                   <th>Quantity</th>
                   <th></th>
                 </tr>
@@ -77,10 +66,10 @@ function ListArticles(props) {
           <div className="card-footer">
             <div className="pagination">
               <li className="page-item">
-                <a className="page-link" previous href="#">1</a>
+                <a className="page-link" href="/#">1</a>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#">2</a>
+                <a className="page-link" href="/#">2</a>
               </li>
             </div>
           </div>

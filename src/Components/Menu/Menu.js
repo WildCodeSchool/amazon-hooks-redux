@@ -9,15 +9,15 @@ function Menu() {
         <div className="navbar navbar-expand-md navbar-light">
           <div className="navbar-brand">
             <a href="/">
-              <img width="300px" src="https://lezardscreation.fr/wp-content/files/2018/10/Blog-1280px-Amazon_logo_plain-700x211.png" alt="logo"/>
+              <img width="300px" src="http://bysearch.fr/wp-content/uploads/2017/03/amazon-logo-e1490617903785.png" alt="logo"/>
             </a>
           </div>
           <div className="navbar-nav ml-auto">
             <div className="nav-item">
-              <Link className="nav-link" href="/register">Register</Link>
+              <Link className="nav-link" to="/register">Register</Link>
             </div>
             <div className="nav-item">
-              <Link className="nav-link"  href="/login">Login</Link>
+              <Link className="nav-link"  to="/login">Login</Link>
             </div>
           </div>
         </div>
