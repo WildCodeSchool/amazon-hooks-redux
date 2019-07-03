@@ -6,6 +6,15 @@ CREATE TABLE articles (
  quantity INT
 );
 
+CREATE TABLE users (
+ id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ email VARCHAR(255),
+ password TEXT,
+ address TEXT,
+ lastname VARCHAR(255),
+ firstname VARCHAR(255)
+);
+
 INSERT INTO articles (name, date, price, quantity)
 VALUES
 ('Fitbit - Versa', NOW(), '159.90', '12'),

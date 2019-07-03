@@ -1,23 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function Login() {
+
+  const [login, setLogin] = useState({
+    email: '',
+    password: ''
+  });
+
+  const submitForm = () => {
+    axios.post('http://127.0.0.1:8000/login', {
+      email: login.email,
+      password: login.password
+    }).then((result) => {
+      if(result.data.code !== 401) {
+        console.log('log in')
+      } else {
+        console.log('bad password')
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
-    <form className="mt-5">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <div>
+      <div className="form-group">
+        <label htmlFor="exampleInputEmail1">Email address</label>
+        <input type="email" onChange={(event) => setLogin({...login, email: event.target.value})} value={login.email} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+      <div className="form-group">
+        <label htmlFor="exampleInputPassword1">Password</label>
+        <input type="password" onChange={(event) => setLogin({...login, password: event.target.value})} value={login.password} className="form-control" id="exampleInputPassword1" placeholder="Password" />
       </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+      <button type="submit" className="btn btn-primary" onClick={submitForm}>Submit</button>
+    </div>
   )
 }
 

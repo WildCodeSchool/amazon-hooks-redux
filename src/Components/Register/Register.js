@@ -1,53 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function Register() {
+
+  const [password, setPassword] = useState('');
+  const [retypePassword, setRetypePassword] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleRegister = () => {
+    axios.post('http://localhost:8000/users', {
+      password: password,
+      lastName: lastName,
+      firstName: firstName,
+      address: address,
+      email: email
+    })
+    .then((result) => {
+      console.log(result.data);
+    })
+  }
+
   return (
-    <form className="mt-5">
+    <div className="mt-5">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputFirstName4">FirstName</label>
+          <input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} class="form-control" id="inputFirstName4" placeholder="FirstName" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputLastName4">LastName</label>
+          <input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)}  class="form-control" id="inputLastName4" placeholder="LastName" />
+        </div>
+      </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email" />
+          <input type="email" value={email} onChange={(event) => setEmail(event.target.value)}  class="form-control" id="inputEmail4" placeholder="Email" />
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" />
-      </div>
-      <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity" />
+          <label for="inputPassword4">Password</label>
+          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} class="form-control" id="inputPassword4" placeholder="Password" />
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">State</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Retype password</label>
+          <input type="password" value={retypePassword} onChange={(event) => setRetypePassword(event.target.value)} class="form-control" id="inputPassword4" placeholder="Password" />
         </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip" />
-        </div>
+        {password !== retypePassword && <p className="text-danger">Password not equal</p>}
       </div>
       <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck" />
-          <label class="form-check-label" for="gridCheck">
-            Check me out
-          </label>
-        </div>
+        <label for="inputAddress">Address</label>
+        <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} class="form-control" id="inputAddress" placeholder="" />
       </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
+      <button class="btn btn-primary" onClick={handleRegister}>Sign in</button>
+    </div>
   )
 }
 
